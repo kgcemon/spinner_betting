@@ -9,7 +9,7 @@ myAppBar() {
     iconTheme: const IconThemeData(color: Colors.white),
     title: Obx(
       () => Text(
-        "${controller.userData.value?.name}",
+        "${controller.userData.value?.profile?.name}",
         style: const TextStyle(color: Colors.white),
       ),
     ),
@@ -18,7 +18,7 @@ myAppBar() {
             style: TextButton.styleFrom(backgroundColor: Colors.transparent),
             onPressed: () {},
             child: Text(
-              "৳${controller.userData.value?.balance}",
+              "৳${controller.userData.value?.profile?.balance}",
               style: const TextStyle(color: Colors.white),
             ),
           )),

@@ -1,69 +1,62 @@
-import 'dart:convert';
-
-UserData userDataFromJson(String str) => UserData.fromJson(json.decode(str));
-
-String userDataToJson(UserData data) => json.encode(data.toJson());
-
 class UserData {
-  int id;
-  String username;
-  String name;
-  String email;
-  DateTime createdAt;
-  DateTime updatedAt;
-  dynamic phone;
-  dynamic avatar;
-  dynamic deviceToken;
-  dynamic device;
-  dynamic os;
-  dynamic appVersion;
-  String balance;
+  int? success;
+  Profile? profile;
 
-  UserData({
-    required this.id,
-    required this.username,
-    required this.name,
-    required this.email,
-    required this.createdAt,
-    required this.updatedAt,
-    required this.phone,
-    required this.avatar,
-    required this.deviceToken,
-    required this.device,
-    required this.os,
-    required this.appVersion,
-    required this.balance,
-  });
+  UserData({this.success, this.profile});
 
-  factory UserData.fromJson(Map<String, dynamic> json) => UserData(
-    id: json["id"],
-    username: json["username"],
-    name: json["name"],
-    email: json["email"],
-    createdAt: DateTime.parse(json["created_at"]),
-    updatedAt: DateTime.parse(json["updated_at"]),
-    phone: json["phone"],
-    avatar: json["avatar"],
-    deviceToken: json["device_token"],
-    device: json["device"],
-    os: json["os"],
-    appVersion: json["app_version"],
-    balance: json["balance"],
-  );
+  UserData.fromJson(Map<String, dynamic> json) {
+    success = json['success'];
+    profile =
+    json['profile'] != null ? new Profile.fromJson(json['profile']) : null;
+  }
 
-  Map<String, dynamic> toJson() => {
-    "id": id,
-    "username": username,
-    "name": name,
-    "email": email,
-    "created_at": createdAt.toIso8601String(),
-    "updated_at": updatedAt.toIso8601String(),
-    "phone": phone,
-    "avatar": avatar,
-    "device_token": deviceToken,
-    "device": device,
-    "os": os,
-    "app_version": appVersion,
-    "balance": balance,
-  };
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['success'] = this.success;
+    if (this.profile != null) {
+      data['profile'] = this.profile!.toJson();
+    }
+    return data;
+  }
+}
+
+class Profile {
+  String? name;
+  String? email;
+  String? phone;
+  Null? image;
+  String? referralCode;
+  Null? referrer;
+  int? balance;
+
+  Profile(
+      {this.name,
+        this.email,
+        this.phone,
+        this.image,
+        this.referralCode,
+        this.referrer,
+        this.balance});
+
+  Profile.fromJson(Map<String, dynamic> json) {
+    name = json['name'];
+    email = json['email'];
+    phone = json['phone'];
+    image = json['image'];
+    referralCode = json['referral_code'];
+    referrer = json['referrer'];
+    balance = json['balance'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['name'] = this.name;
+    data['email'] = this.email;
+    data['phone'] = this.phone;
+    data['image'] = this.image;
+    data['referral_code'] = this.referralCode;
+    data['referrer'] = this.referrer;
+    data['balance'] = this.balance;
+    return data;
+  }
 }

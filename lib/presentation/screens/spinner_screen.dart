@@ -91,10 +91,6 @@ class _SpinnerScreenState extends State<SpinnerScreen> {
                     setState(() {
                       rewards = items[selected.value].toString();
                       _showResultDialog();
-                      Future.delayed(
-                        const Duration(seconds: 5),
-                            () => Get.offAll(() => const CategoryScreen()),
-                      );
                     });
                   },
                   items: [
