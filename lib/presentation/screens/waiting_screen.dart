@@ -1,6 +1,8 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
+import 'package:rmbetting/data/model/response_object.dart';
+import 'package:rmbetting/data/network_services/network_service.dart';
 import '../widgets/appbar.dart';
 
 class WaitingScreen extends StatefulWidget {
@@ -17,6 +19,7 @@ class WaitingScreenState extends State<WaitingScreen> {
   @override
   void initState() {
     super.initState();
+    loadData();
     _startTimer();
   }
 
@@ -38,6 +41,12 @@ class WaitingScreenState extends State<WaitingScreen> {
         });
       }
     });
+  }
+
+  loadData() async {
+    ResponseObject response = await NetworkCaller.getRequest(
+        "https://t20betting.naz24h.com/api/game-check");
+    
   }
 
   @override

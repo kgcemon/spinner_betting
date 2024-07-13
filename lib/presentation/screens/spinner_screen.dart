@@ -75,11 +75,15 @@ class _SpinnerScreenState extends State<SpinnerScreen> {
       body: PopScope(
         canPop: false,
         child: Container(
-          decoration: const BoxDecoration(image: DecorationImage(image: AssetImage("assets/woman.png"),fit: BoxFit.cover)),
+          decoration: const BoxDecoration(
+              image: DecorationImage(
+                  image: AssetImage("assets/woman.png"), fit: BoxFit.cover)),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const SizedBox(height: 50,),
+              const SizedBox(
+                height: 50,
+              ),
               SizedBox(
                 height: 300,
                 child: FortuneWheel(
@@ -99,8 +103,7 @@ class _SpinnerScreenState extends State<SpinnerScreen> {
                         style: FortuneItemStyle(
                           color: colors[i % colors.length],
                           borderColor: Colors.black,
-                          borderWidth:
-                          2.0,
+                          borderWidth: 2.0,
                         ),
                         child: Text(items[i].toString()),
                       ),

@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rmbetting/presentation/screens/spinner_screen.dart';
+import 'package:rmbetting/presentation/screens/waiting_screen.dart';
 import 'package:rmbetting/presentation/state_holders/profile_controller.dart';
 import 'package:rmbetting/presentation/widgets/appbar.dart';
 import '../state_holders/category_screen_controller.dart';
 
 class CategoryScreen extends StatefulWidget {
   const CategoryScreen({super.key});
-
   @override
   State<CategoryScreen> createState() => _CategoryScreenState();
 }
-
 class _CategoryScreenState extends State<CategoryScreen> {
   @override
   void initState() {
@@ -19,10 +18,8 @@ class _CategoryScreenState extends State<CategoryScreen> {
     Get.find<ProfileScreenController>().getProfileInfo();
     Get.find<CategoryScreenController>().getCategory();
   }
-
   CategoryScreenController categoryScreenController =
       Get.find<CategoryScreenController>();
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -84,7 +81,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
                               .purchaseSpinner(controller.categoryModel.value.spinners![index].id.toString())
                               .then((value) {
                             Navigator.of(context).pop();
-                            Get.to(()=> const SpinnerScreen());
+                            Get.to(()=> const WaitingScreen());
                           });
                         },
                       child: Container(
